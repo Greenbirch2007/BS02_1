@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>受注画面</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css"/>
+    <link rel="stylesheet" href="css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="css/manage.css" type="text/css"/>
+    <link href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <style>
+        #ui-datepicker-div {
+            width: 160px;
+            font-size: 62.5%;
+        }
+        .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year {
+            width: 30%;
+            min-width: 40px;
+        }
+        .ui-datepicker select.ui-datepicker-year {
+            width: 45%;
+            min-width: 55px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <h1><span>■</span>受注画面</h1>
+    <h2>■検索条件</h2>
+    <div class="content-top">
+        <form method="get" action="TG0200"
+              class="manage-form" id="queryForm">
+            <label for="date" style="margin-right: 50px; margin-left: 100px">受注月</label>
+            <a href="javascript:void(0)" style="margin-right: 30px; color: #0066cc" id="minusDateArrow">&lt;&lt;</a>
+            <input type="text" name="date" id="date" style="width: 90px" >
+            <a href="javascript:void(0)" style="margin-left: 30px; color: #0066cc" id="addDateArrow">&gt;&gt;</a>
+        </form>
+    </div>
+    <h2>■受注一覧</h2>
+    <div class="content-bottom">
+        <form method="post" action="TG0200"
+              class="answer-form" id="answerForm">
+            <div class="row" style="margin-bottom: 5px">
+                <div class="right">
+                    <span style="margin-right: 50px">件数： <span style="color: #0066cc">4 件</span></span>
+                    <a href="javascript:void(0)" style="margin-right: 50px" onclick="kariAddData()">未受注社員新規登録</a>
+                    <a href="javascript:void(0)" style="margin-right: 20px" onclick="addData()">新規登録</a>
+                </div>
+            </div>
+            <table border="1" class="manage-table" id="manageTable">
+                <tr>
+                    <th style="width: 10%">依頼先</th>
+                    <th style="width: 10%">受注番号</th>
+                    <th style="width: 10%">作業員名</th>
+                    <th style="width: 9%">受注金額</th>
+                    <th style="width: 15%">受注精算情報</th>
+                    <th style="width: 10%">外注番号</th>
+                    <th style="width: 9%">外注金額</th>
+                    <th style="width: 15%">外注精算情報</th>
+                    <th style="width: 7%">受注状態</th>
+                    <th style="width: 4%">編集</th>
+                </tr>
+                <tr>
+                    <td>（株）AAA</td>
+                    <td>0003-201712-0002</td>
+                    <td>王　五</td>
+                    <td>¥510,000</td>
+                    <td>140H～200H          (¥3,640～¥2,550)</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>受注済</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0)" onclick="updateData('0003-201712-0002');">更新</a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0)"
+                               onclick="deleteData('（株）AAA', '0003-201712-0002', '王五');">削除</a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0)" onclick="extendData('0003-201712-0002');">削除</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>（株）BBB</td>
+                    <td>0004-201712-0003</td>
+                    <td>（株）CCC          横手 八</td>
+                    <td>¥510,000</td>
+                    <td>150H～190H          (¥3,470～¥2,730)</td>
+                    <td>0003-201712-0002</td>
+                    <td>¥350,000</td>
+                    <td>¥2,500～¥1,750</td>
+                    <td>見積済</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0)" onclick="updateData('0003-201712-0002');">更新</a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0)"
+                               onclick="deleteData('（株）AAA', '0003-201712-0002', '王五');">削除</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>（株）BBB</td>
+                    <td>0004-201712-0003</td>
+                    <td>個人事業主          羅 六</td>
+                    <td>¥510,000</td>
+                    <td>140H～200H          (¥3,640～¥2,550)</td>
+                    <td>0003-201712-0002</td>
+                    <td>¥350,000</td>
+                    <td>¥2,500～¥1,750</td>
+                    <td>仮受注</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0)" onclick="updateData('0003-201712-0002');">更新</a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0)"
+                               onclick="deleteData('（株）AAA', '0003-201712-0002', '王五');">削除</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>馬　一</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>未受注</td>
+                    <td>
+                        <div>
+                            <a href="javascript:void(0)" onclick="updateData('0003-201712-0002');">更新</a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0)"
+                               onclick="deleteData('（株）AAA', '0003-201712-0002', '王五');">削除</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <input type="hidden" id="submitKind" name="submitKind">
+            <input type="hidden" id="edit_id" name="edit_id">
+            <input type="hidden" id="edit_jyutyuuStep" name="edit_jyutyuuStep">
+            <input type="hidden" id="extend_flag" name="extend_flag">
+            <input type="hidden" id="extend_jyutyuuNum" name="extend_jyutyuuNum">
+        </form>
+    </div>
+</div>
+
+<!-- [if lt IE 9] >
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<![endif]  -->
+<!-- [if gte IE 9] ><!-->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!-- <![endif]  -->
+<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js"></script>
+<script src="js/datePickerFormat.js"></script>
+<script src="js/TG0200.js"></script>
+</body>
+</html>

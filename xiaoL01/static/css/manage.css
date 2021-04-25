@@ -1,0 +1,328 @@
+body  {
+    font-family: 'メイリオ','Hiragino Kaku Gothic Pro',sans-serif;
+    font-size: 14px;
+    margin: 0px auto;
+    max-width: 1040px;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+.a {
+    color: blue;
+    cursor: pointer;
+}
+
+.content h1{
+    border-radius: 5px;
+    background-image:-webkit-linear-gradient(
+            to bottom,
+            rgba(166,166,166,1) 0%,
+            rgba(214,214,214,1) 50%,
+            rgba(166,166,166,1) 100%);
+    background-image:linear-gradient(
+            to bottom,
+            rgba(166,166,166,1) 0%,
+            rgba(214,214,214,1) 50%,
+            rgba(166,166,166,1) 100%);
+    height:40px;
+	font-size: 150%;
+    line-height:2;
+    vertical-align: middle;
+    color: #013ADF;
+}
+
+.content h1 span {
+    color: #FE642E
+}
+
+.content > h2 {
+    margin-top: 15px;
+    margin-bottom: 7px;
+}
+
+
+.row {
+    margin-bottom: 10px;
+}
+
+.row-left {
+    float: left;
+    width: 50%;
+}
+
+.row-right {
+    float: left;
+    width: 50%;
+}
+
+.edit-form .row-left>label:first-child {
+    width: 150px;
+    display: inline-block;
+}
+
+.edit-form .row-right>label:first-child {
+    width: 100px;
+    display: inline-block;
+}
+
+.manage-table th{
+	 background-color: #99ccff;
+}
+
+
+select {
+    min-width: 250px;
+    max-width: 300px;
+    height:25px;
+}
+
+input[type=text], input[type=number]{
+    width: 250px;
+    height: 25px;
+}
+
+.manage-form label {
+    margin-right: 25px;
+}
+
+input[type=checkbox], input[type=radio] {
+    vertical-align: middle;
+}
+
+.edit-form input[type=submit], input[type=button] {
+    padding: 5px 30px;
+    font-size: 110%;
+    border-radius: 5px;
+    background-image:-webkit-linear-gradient(
+            to bottom,
+            rgba(180,199,231,1) 0%,
+            rgba(216,226,242,1) 50%,
+            rgba(180,199,231,1) 100%);
+    background-image:linear-gradient(
+            to bottom,
+            rgba(180,199,231,1) 0%,
+            rgba(216,226,242,1) 50%,
+            rgba(180,199,231,1) 100%);
+}
+
+.header-top, .header-bottom, .content>h2, .content-top, .content-middle, .content-bottom, .content-inner{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.work-history-table {
+	border-collapse: collapse;
+    width: 100%;
+
+}
+
+.work-history-table th {
+    background-color: #99ccff;
+    border: 1px solid black;
+}
+
+.work-history-table td {
+    border: 1px solid black;
+}
+
+.work-history-table td input[type=text] {
+    padding: 0px;
+}
+
+
+.edit-form .row>label:first-child {
+    width: 150px;
+    display: inline-block;
+}
+
+.edit-form.textarea {
+    vertical-align: bottom;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0px 5px;
+}
+
+.edit-form .textarea-row label {
+    vertical-align: top;
+}
+
+.edit-form .textarea-row textarea {
+    width: 500px;
+    min-height: 40px;
+    line-height: 20px;
+}
+
+.content .mr5 {
+    margin-right: 5px;
+}
+
+.content input[type=text].w100, .content input[type=number].w100 {
+    width: 100px;
+}
+
+.red {
+    color: red;
+}
+
+.edit-form select{
+    min-width: 200px;
+}
+
+.edit-form h2 {
+    font-size: 140%;
+    border-bottom: 2px solid #adcdea;
+    margin: 15px 0 10px;
+    position: relative;
+	font-size: 120%;
+}
+
+.edit-form h2 span {
+    font-size: 72%;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.edit-form h3 {
+    font-size: 130%;
+    margin: 15px 0 10px;
+}
+
+.edit-form .work-history-table input[type=text] {
+    width: 100%;
+    border: 0;
+}
+
+.skill-table {
+  display: table;
+  border-collapse: collapse;
+  padding:0px;
+
+  }
+.skill-table .skill-row {
+  display: table-row;
+}
+
+.skill-table .skill-row .skill-name {
+  display: table-cell;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: none;
+    border-left: 1px solid;
+    min-width: 90px;
+    background-color: #ccffff;
+    text-align:center;
+}
+.skill-table .skill-row .skill-meisai {
+  border-collapse: collapse;
+  display: table-cell;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: none;
+    border-left: 1px solid;
+}
+
+.skill-table .skill-row .skill-item-name {
+  	display: table-cell;
+	min-width: 142px;
+    text-align:center;
+    border-top: none;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    border-left: none;
+}
+
+.skill-table .skill-row .skill-item-select {
+  	display: table-cell;
+    border-top: none;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    border-left: none;
+    padding:1px;
+}
+
+.skill-table select {
+    font-size: 18px;
+    min-width: 40px;
+    border:none;
+}
+
+.project-table {
+  display: table;
+  border-collapse: collapse;
+  border: 1px solid;
+  }
+.project-table th {
+    background-color: #99ccff;
+  border: 1px solid;
+}
+.project-table td {
+  border: 1px solid;
+}
+.project-table td input[type=text] {
+    text-align: left;
+}
+
+.project-table th>div {
+    width: 100px;
+}
+
+.project-table select{
+    min-width: inherit;
+    width: 100px;
+}
+
+.project-table input[type=text] {
+    width: 100px;
+    border: 0;
+    display: block;
+}
+
+.project-scope-table td, .project-scope-table th>div {
+    width: 25px;
+}
+
+.project-scope-table th {
+    border: none;
+}
+
+.project-scope-table td {
+    border: none;
+    border-right: 1px solid #000;
+}
+
+.project-scope-table td:last-child {
+    border: none;
+}
+
+.project-scope-table select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 41px;
+    border: none;
+}
+
+.tantou-table {
+	border-collapse: collapse;
+    width: 100%;
+
+}
+
+.tantou-table th {
+    background-color: #99ccff;
+    border: 1px solid black;
+}
+
+.tantou-table td {
+    border: 1px solid black;
+}
+
+.tantou-table td input[type=text] {
+    padding: 0px;
+    width: 100%;
+    border: 0;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>社員選択画面</title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css"/>
+    <link rel="stylesheet" href="css/common.css" type="text/css"/>
+    <link rel="stylesheet" href="css/manage.css" type="text/css"/>
+    <link href="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <style>
+        .searchButton {
+            letter-spacing: 10px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <h1><span>■</span>社員選択</h1>
+    <h2>■検索条件</h2>
+    <div class="content-top" style="text-align: center">
+        <div class="row">
+            <div class="row-left">
+                <label for="kaisya" style="margin-right: 30px">所属会社</label>
+                <select name="kaisya" id="kaisya">
+                    <option value="0">全て</option>
+                    <option value="1">(株)ブライトスター</option>
+                    <option value="2">(株)トップグランド</option>
+                </select>
+            </div>
+            <div class="row-right">
+                <label for="syainName" style="margin-right: 30px">社員名</label>
+                <input type="text" name="syainName" id="syainName">
+            </div>
+        </div>
+        <div class="row" style="text-align: left;margin-left: 40px;">
+            <input type="button" value="検索" onclick="search()" class="searchButton" style="padding: 2px 20px 2px 30px;">
+        </div>
+
+    </div>
+    <h2>■取引先一覧</h2>
+    <div class="content-bottom">
+            <div class="row" style="margin-bottom: 5px">
+                <div class="right">
+                    <span style="margin-right: 50px">件数： <span style="color: #0066cc">4 件</span></span>
+                </div>
+            </div>
+            <table border="1" class="manage-table" id="manageTable">
+                <tr>
+                    <th style="width: 10%">所属会社</th>
+                    <th style="width: 10%">社員名</th>
+                    <th style="width: 10%">性別</th>
+                    <th style="width: 10%">職業種類</th>
+                    <th style="width: 10%">編集</th>
+                </tr>
+                <tr>
+                    <td>（株）ブライトスター</td>
+                    <td>馬　XX</td>
+                    <td>男</td>
+                    <td>ITエンジニア</td>
+                    <td><a href="javascript:void(0)" onclick="select(1)">選択</a></td>
+                </tr>
+                <tr>
+                    <td>（株）ブライトスター</td>
+                    <td>馬　XX</td>
+                    <td>男</td>
+                    <td>ITエンジニア</td>
+                    <td><a href="javascript:void(0)" onclick="select(1)">選択</a></td>
+                </tr>
+                <tr>
+                    <td>（株）ブライトスター</td>
+                    <td>馬　XX</td>
+                    <td>男</td>
+                    <td>ITエンジニア</td>
+                    <td><a href="javascript:void(0)" onclick="select(1)">選択</a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+<!-- [if lt IE 9] >
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<![endif]  -->
+<!-- [if gte IE 9] ><!-->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<!-- <![endif]  -->
+<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.js"></script>
+</body>
+</html>

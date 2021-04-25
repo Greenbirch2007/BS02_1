@@ -1,0 +1,167 @@
+@CHARSET "UTF-8";
+.box {
+	float: left;
+	margin-left: 10px;
+}
+
+.boxContainer {
+	overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* clearfix */
+.boxContainer:before,
+.boxContainer:after {
+    content: "";
+    display: table;
+}
+
+.boxContainer:after {
+    clear: both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.boxContainer {
+    zoom: 1;
+}
+
+table.login {
+	padding: 10px;
+    width: 400px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border: 1px solid #000000;
+    font-size: 12px;
+}
+table.login tr,
+table.login tr.line{
+     height: 10px;
+}
+
+table.login th,
+table.login th {
+    background: #BBFFFF;
+    vertical-align: middle;
+    text-align: left;
+    width: 150px;
+    overflow: visible;
+    position: relative;
+    color: #000;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+table.login th:after {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-left-color: #BBFFFF;
+    border-width: 10px;
+    margin-top: -10px;
+}
+
+/* firefox */
+@-moz-document url-prefix() {
+    table.login th::after {
+        float: right;
+        padding: 0;
+        left: 30px;
+        top: 10px;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: relative;
+        pointer-events: none;
+        border: 10px solid transparent;
+        border-left: #295890 10px solid;
+        margin-top: -10px;
+    }
+}
+
+table.login td {
+    padding: 10px;
+    vertical-align: middle;
+    text-align:center
+    font-size: 15px;
+}
+
+table.login td.title {
+    background: #295890;
+    vertical-align: middle;
+    text-align: left;
+    overflow: visible;
+    position: relative;
+    color: #fff;
+    font-weight: normal;
+    font-size: 15px;
+}
+table.login td.error{
+	color: #ff0000;
+	font-size: 15px;
+}
+
+
+
+table.sysInfo {
+    width: 550px;
+    margin: 0 auto;
+    border-collapse: separate;
+	border: 1px solid #000000;
+    font-size: 12px;
+	padding: 10px;
+}
+
+table.sysInfo th,
+table.sysInfo td {
+    padding: 10px;
+}
+
+table.sysInfo td.title {
+    background: #295890;
+    vertical-align: middle;
+    text-align: left;
+    overflow: visible;
+    position: relative;
+    color: #fff;
+    font-weight: normal;
+    font-size: 15px;
+}
+table.sysInfo td{
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.button {
+	height: 50px;
+    width: 150px;
+	border: 1px solid #15aeec;
+	background-color: #49c0f0;
+	background-image: -webkit-linear-gradient(top, #49c0f0, #2cafe3);
+	background-image: linear-gradient(to bottom, #49c0f0, #2cafe3);
+	border-radius: 4px;
+	color: #fff;
+	line-height: 50px;
+	-webkit-transition: none;
+	transition: none;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    font-size: 20px;
+}
+.button:hover {
+	border:1px solid #1090c3;
+	background-color: #1ab0ec;
+	background-image: -webkit-linear-gradient(top, #1ab0ec, #1a92c2);
+	background-image: linear-gradient(to bottom, #1ab0ec, #1a92c2);
+}
+.button:active {
+	background: #1a92c2;
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .2);
+	color: #1679a1;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, .5);
+}
