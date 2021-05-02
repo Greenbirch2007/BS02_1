@@ -24,30 +24,24 @@
 	    <tr><td class="title" colspan="2">利用者申請</td>
 		<tr class="line" />
 		<tr>
-			<th >ログインID：</th>
+			<th align="right">ログインID：</th>
 			<td ><input type="text" id="userID" name="userID" value=""></td>
-			<!---<td ><input type="text" id="userID" name="userID" value="<%= loginModel.getUserInfo().getUserID() %>"></td>
-<!--		</tr>-->
+
 		<tr class="line" />
 		<tr>
-			<th >パスワード：</th>
+			<th align="right">パスワード：</th>
 			<td ><input type="password" id="password" name="password"></td>
 		</tr>
 		<tr class="line" />
 		<tr class="line" />
 		<tr>
-			<td colspan="2"><input class="button" type="submit" value="ログイン" ></td>
+			<td  align="center"  colspan="2"><input class="button" type="submit" value="ログイン" align="center"></td>
 		</tr>
 
-<!--	<%-->
-<!--		if(loginModel != null && loginModel.isValidUser() == false && loginModel.getMessage() != null) {-->
-<!--	%>-->
+
 		<tr>
 		<td class="error" colspan="2"></td></tr>
-		<!--<td class="error" colspan="2"><%=loginModel.getMessage() %></td></tr>
-<!--	<%-->
-<!--		}-->
-<!--	%>-->
+
 	</table>
 	</form>
 	</div>
