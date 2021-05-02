@@ -5,8 +5,10 @@ $(function () {
 
     function initForm(target) {
 
-//      new Condition("input[name=jyutyuuIraisaki]", "依頼先", true, "string", 4, null),
+       // new Condition("input[name=jyutyuuIraisaki]", "依頼先", true, "string", 4, null),
         var conditions = [
+            new Condition("input[name=jyutyuuIraisakiId]", "依頼先", true, "string",100, null),
+            new Condition("input[name=jyutyuuSyainId]", "社員名", true, "string", 100, null),
             new Condition("input[name=date]", "受注月", true, "regExp", 8, /^20\d{2}年(0[1-9]|1[0-2])月$/),
             new Condition("input[name=jyutyuuSyainName]", "社員", true, "string", 4, null),
             new Condition("input[name=jyutyuuAnkeimei]", "案件名", true, "string", 100, null),
@@ -25,12 +27,12 @@ $(function () {
             new Condition("input[name=gaityuusaki]", "外注先", false, "string", 255, null),//特殊
             new Condition("input[name=gaityuuKaishibi]", "開始日", false, "regExp", 4, /^\d{1,2}$/),//特殊
             new Condition("input[name=gaityuuSyuuryoubi]", "終了日", false, "regExp", 4, /^\d{1,2}$/),//特殊
-            new Condition("input[name=gaityuuKingaku]", "受注金額",  false, "numeric", 10, null),//特殊
+            new Condition("input[name=gaityuuKingaku]", "外注金額",  false, "numeric", 10, null),//特殊
             new Condition("input[name=gaityuuKagenJikan]", "下限時間", false,  "regExp", 5, /^\d{1,3}(\.\d)?$/),
             new Condition("input[name=gaityuuJyougenJikan]", "上限時間", false,  "regExp", 5, /^\d{1,3}(\.\d)?$/),
             new Condition("input[name=gaityuuKagenKingaku]", "控除金額", false, "numeric", 10, null),
             new Condition("input[name=gaityuuJyougenKingaku]", "超過金額", false, "numeric", 10, null),
-            new Condition("input[name=gaityuuSagyouinName]", "作業員名", false, "string", 100, null), //特殊
+            new Condition("input[name=gaityuuSagyouinName]", "作業員名", true, "string", 100, null), //特殊
             new Condition("textarea[name=gaityuuBikou]", "備考", false, "string", 255, null)
         ];
 
@@ -129,7 +131,10 @@ $(function () {
                 getCondition("input[name=gaityuuSyuuryoubi]").nn = nn;
                 getCondition("input[name=gaityuuKingaku]").nn = nn;
 
+                // 社員チェック無効、作業員チェック有効
                 getCondition("input[name=jyutyuuSyainName]").nn = !nn;
+                getCondition("input[name=jyutyuuSyainId]").nn = !nn;
+                getCondition("input[name=gaityuuSagyouinName]").nn = nn;
                 $("#gaityuuSeisan").change();
             });
         };
@@ -139,13 +144,13 @@ $(function () {
             $("#gaityuuBox").show();
 
             //受注からコピーする：開始日、終了日、精算、下限時間、上限時間、控除金額、超過金額
-            $("#gaityuuKaishibi").val($("#jyutyuuKaishibi").val());
-            $("#gaityuuSyuuryoubi").val($("#jyutyuuSyuuryoubi").val());
-            $("#gaityuuSeisan").val($("#jyutyuuSeisan").val());
-            $("#gaityuuKagenJikan").val($("#jyutyuuKagenJikan").val());
-            $("#gaityuuJyougenJikan").val($("#jyutyuuJyougenJikan").val());
-            $("#gaityuuKagenKingaku").val($("#jyutyuuKagenKingaku").val());
-            $("#gaityuuJyougenKingaku").val($("#jyutyuuJyougenKingaku").val());
+            $("#gaityuuKaishibi").val(document.getElementById("jyutyuuKaishibi").value);
+            $("#gaityuuSyuuryoubi").val(document.getElementById("jyutyuuSyuuryoubi").value);
+            $("#gaityuuSeisan").val(document.getElementById("jyutyuuSeisan").value);
+            $("#gaityuuKagenJikan").val(document.getElementById("jyutyuuKagenJikan").value);
+            $("#gaityuuJyougenJikan").val(document.getElementById("jyutyuuJyougenJikan").value);
+            $("#gaityuuKagenKingaku").val(document.getElementById("jyutyuuKagenKingaku").value);
+            $("#gaityuuJyougenKingaku").val(document.getElementById("jyutyuuJyougenKingaku").value);
 
             //社員名を空白し、社員検索を無効にする
             $("#jyutyuuSyainName").val("");
@@ -158,28 +163,112 @@ $(function () {
             $("#gaityuuBox").hide();
             //社員検索を有効にする
             $("#syainSelectButton").show();
+            //受注の場合、作業員チェック無効
+            var nn = false;
+            getCondition("input[name=gaityuuSagyouinName]").nn = nn;
 
             $("#bottom-line").hide();
         };
 
         var initCalculateKingaku = function(){
             $("#calculateKingaku").on("click", function () {
+            	
                 //控除金額、超過金額を計算、記入
                 //控除金額＝外注金額/下限時間（※10円切り上げ）
                 //超過金額＝外注金額/上限時間（※10円切り捨て）
-                var kingaku = $("#gaityuuKingaku").val();
-                var kagenJikan = $("#gaityuuKagenJikan").val();
-                var jyougenJikan = $("#gaityuuJyougenJikan").val();
-                if(kingaku && kagenJikan && jyougenJikan){
-                    var kagenKingaku = kingaku / kagenJikan;
+                var kingaku = document.getElementById("gaityuuKingaku").value;
+                var kagenJikan = document.getElementById("gaityuuKagenJikan").value;
+                var jyougenJikan = document.getElementById("gaityuuJyougenJikan").value;
+
+                if(!kingaku || !kagenJikan || !jyougenJikan){
+                	alert("外注金額、上限時間と下限時間を入力してください!");               	
+                } else if (kagenJikan <= 0 || jyougenJikan <= 0) {
+                	alert("上限時間または下限時間0以上を入力してください!");
+                } else {
+                	var kagenKingaku = kingaku / kagenJikan;
                     kagenKingaku = Math.ceil( kagenKingaku / 10 ) * 10;
                     $("#gaityuuKagenKingaku").val(kagenKingaku);
                     var jyougenKingaku = kingaku / jyougenJikan;
                     jyougenKingaku = Math.floor( jyougenKingaku / 10 ) * 10;
                     $("#gaityuuJyougenKingaku").val(jyougenKingaku);
                 }
+          
             });
         };
+
+        // 関連チェック
+        $("#checkflag").on("click", function () {
+        	// 受注開始日と終了日
+        	var jyutyuKaishibi = document.getElementById("jyutyuuKaishibi").value;
+        	var jyutyuSyuryoubi = document.getElementById("jyutyuuSyuuryoubi").value;
+        	// 外注開始日と終了日
+        	var gaityuKaishibi = document.getElementById("gaityuuKaishibi").value;
+        	var gaityuSyuryoubi = document.getElementById("gaityuuSyuuryoubi").value;
+        	// 受注上下限時間
+        	var jyutyuJyougenJikan = document.getElementById("jyutyuuJyougenJikan").value;
+        	var jyutyuKagenJikan = document.getElementById("jyutyuuKagenJikan").value;
+        	// 外注上下限時間
+        	var gaityuJyougenJikan = document.getElementById("gaityuuJyougenJikan").value;
+        	var gaityuKagenJikan = document.getElementById("gaityuuKagenJikan").value;
+        	// 受注控除金額と超過金額
+        	var jyutyuKagenKingaku = document.getElementById("jyutyuuKagenKingaku").value;
+        	var jyutyuJyougenKingaku = document.getElementById("jyutyuuJyougenKingaku").value;
+        	// 外注控除金額と超過金額
+        	var gaityuKagenKingaku = document.getElementById("gaityuuKagenKingaku").value;
+        	var gaityuJyougenKingaku = document.getElementById("gaityuuJyougenKingaku").value;
+	
+        	var jyutyugetu = $("#date");
+        	var date = $(jyutyugetu).datepicker("getDate");
+            date.setMonth(date.getMonth() + 1);
+            date.setDate(0);
+            var syuuryoubi = date.getDate();
+
+        	if(jyutyuSyuryoubi > syuuryoubi){			
+        		alert("受注終了日は今月の最後の日を超えてはいけません。");						
+        		return false;		
+        	}		
+        	if(gaityuSyuryoubi　> syuuryoubi){			
+        		alert("外注終了日は今月の最後の日を超えてはいけません。");			
+        		return false;		
+        	}
+        	if (jyutyuKagenJikan && jyutyuJyougenJikan) {
+        		if(jyutyuKagenJikan > jyutyuJyougenJikan){			
+            		alert("受注下限時間は上限時間を超えてはいけません。");						
+            		return false;		
+            	}
+        	}
+        	if(gaityuJyougenJikan && gaityuKagenJikan){
+        		if (gaityuKagenJikan > gaityuJyougenJikan) {
+        			alert("外注下限時間は上限時間を超えてはいけません。");						
+            		return false;
+        		}       				
+        	}
+        	if (jyutyuKaishibi && jyutyuSyuryoubi) {
+        		if(jyutyuKaishibi > jyutyuSyuryoubi){			
+            		alert("受注開始日は終了日を超えてはいけません。");						
+            		return false;		
+            	}
+        	}  	
+        	if(gaityuKaishibi && gaityuSyuryoubi){
+        		if (gaityuKaishibi > gaityuSyuryoubi) {
+        			alert("外注開始日は終了日を超えてはいけません。");						
+            		return false;
+        		}       				
+        	}
+        	if (jyutyuKagenKingaku && jyutyuJyougenKingaku) {
+        		if(jyutyuJyougenKingaku > jyutyuKagenKingaku){			
+            		alert("受注超過金額は控除金額を超えてはいけません。");						
+            		return false;		
+            	}
+        	}
+        	if(gaityuKagenKingaku && gaityuJyougenKingaku){
+        		if (gaityuJyougenKingaku > gaityuKagenKingaku) {
+        			alert("外注超過金額は控除金額を超えてはいけません。");						
+            		return false;
+        		}       				
+        	}
+        	return true;	
+        });
 
         //初期設定
         var init = function () {
@@ -194,6 +283,11 @@ $(function () {
                     updateShuuRyoubi(this);
                 }
             });
+            var curDate = new Date();
+            var curYear =curDate.getFullYear();
+            var curMonth = curDate.getMonth()+1; 
+            $("#niseDate").val(curYear+"年"+curMonth+"月")
+//            var niseDate = 
             $("#gaityuusakiId").on("change", function () {
                 $("#gaityuuSyainId").val("");
             });
@@ -205,6 +299,7 @@ $(function () {
             initGaityuCheckbox();
             initCalculateKingaku();
             initSeisan();
+            updateShuuRyoubi(date_elem);
         }
 
         init();

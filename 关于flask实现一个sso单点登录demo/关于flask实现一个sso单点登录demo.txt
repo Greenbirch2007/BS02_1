@@ -1,0 +1,69 @@
+关于flask实现一个sso单点登录demo
+
+https://www.icode9.com/content-4-729593.html
+
+关于flask实现一个sso单点登录demo
+网上有太多SSO单点登录原理，又是cookie,session之类的。看的越多，头就越大。简单利用flask实现一个单点登录。
+
+场景：我们有一个A网站还有一个B网站，我们在登录A网站，那么访问B网站也同时登录。没必要再去重新登录B,我们通过Iframe实现。
+
+从A ----> B 传递 可以通过 postMessage解决跨域、跨窗口消息传递
+
+这里:开8000端口代表A, 7000端口代表B
+
+后台代码：
+
+from flask import Flask,render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+if __name__ == '__main__':
+    app.run(host="127.0.0.1", port=8000)# A
+    app.run(host="127.0.0.1", port=7000)# B
+前台代码
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是demo1的html页面</title>
+</head>
+<body>
+<p>
+    <button onclick="login();" id="login">同步登录</button>
+    <p id="loginOut" style="display: none;">该用户已经登录
+        <button onclick="localStorage.clear();" id="login">注销</button>
+    </p>
+</p>
+<iframe src="http://127.0.0.1:7000/" style="height: 0px;width: 0px;display: none;"></iframe>
+</body>
+<script>
+    // 用于显示同步登陆
+    var authToken=localStorage.getItem('authToken')
+    if(authToken){
+        document.getElementById('login').style.display='none';
+        document.getElementById('loginOut').style.display='block';
+    }
+
+    // 同步登陆
+    function login(){
+        // 这里data 相当于访问后台接口并获取token
+        let data=JSON.stringify({
+            token:'这是一个token',
+        })
+        // data传入iframe
+        document.getElementsByTagName('iframe')[0].contentWindow.postMessage(data,'*');
+    }
+
+    // 监听：有消息的话，会把token存入 浏览器中
+    window.addEventListener('message',function(e){
+        console.log(e.data)
+        if(e.source!=window.parent) return;
+        localStorage.setItem("authToken",e.data);
+    },false);
+</script>
+</html>

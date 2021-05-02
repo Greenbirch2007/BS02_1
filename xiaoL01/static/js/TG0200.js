@@ -102,21 +102,21 @@ $(function(){
                                 location.reload();
                                 break;
                             case 1:
-                                alert("以下の受注情報すでに外注済み\nまたは請求済みしましたので、削除できません。");
+                                alert("受注情報すでに外注済み\nまたは請求済みしましたので、削除できません。");
                                 break;
                         }
                     },
-                    complete: function(XMLHttpRequest, status){
-                        if(XMLHttpRequest.status == 404){
-                            alert("ページが見つかりません");
-                        }
-                        if(status == "timeout"){
-                            alert("request timeout");
-                        }
-                    },
-                    error: function(jqXHR, textStatus, message) {
-                        alert(jqXHR.responseText);
-                    }
+//                    complete: function(XMLHttpRequest, status){
+//                        if(XMLHttpRequest.status == 404){
+//                            alert("ページが見つかりません");
+//                        }
+//                        if(status == "timeout"){
+//                            alert("request timeout");
+//                        }
+//                    },
+//                    error: function(jqXHR, textStatus, message) {
+//                        alert(jqXHR.responseText);
+                    //}
                 });
             }
         };

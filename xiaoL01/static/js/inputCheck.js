@@ -37,8 +37,8 @@ function condition_check(elem, condition) {
     if(condition.kind == "string"){
 
     } else if(condition.kind == "regExp"){
-        if(condition.regExp.test(elem.val()) == false){
-            condition_check_fail(condition, condition.item_name + "は" + condition.regExp +"で入力してください。");
+        if(condition.regExp.test(elem.val()) == false){ 			
+            condition_check_fail(condition, condition.item_name + "の格式は正確に入力してください。");
             return false;
         }
     } else {
@@ -50,6 +50,7 @@ function condition_check(elem, condition) {
                 case "zenkaku_alphabetic": kind = "全角の英字"; break;
                 case "alphanumeric": kind = "半角英数字"; break;
                 case "numeric": kind = "半角数字"; break;
+                case "alphabetic": kind = "半角英文"; break;
             }
             condition_check_fail(condition, condition.item_name + "は" + kind +"で入力してください。");
             return false;

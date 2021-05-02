@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>受注登録画面</title>
     <link rel="stylesheet" href="css/reset.css" type="text/css"/>
     <link rel="stylesheet" href="css/common.css" type="text/css"/>
@@ -34,7 +34,7 @@
 <div class="content">
     <h1><span>■</span>受注登録</h1>
     <div class="content-inner">
-        <form action="${pageContext.request.contextPath}/TG0201" method="post" class="edit-form">
+        <form action="${pageContext.request.contextPath}/TG0201" autocomplete="off" method="post" class="edit-form">
             <h2>
                 <div class="row">
                     <label for="date" class="red">受注月</label>
@@ -53,7 +53,7 @@
                 <div class="row">
                     <label>依頼先</label>
                     <input type="text" name="jyutyuuIraisaki" disabled>
-                    <input type="text" name="jyutyuuIraisakiId">
+                    <input type="hidden" name="jyutyuuIraisakiId">
                     <input type="button" value="依頼先検索" disabled>
                 </div>
                 <div class="row">

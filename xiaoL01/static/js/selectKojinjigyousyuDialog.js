@@ -69,6 +69,11 @@ function initKojinjigyousyuDialog() {
 var selectKojinjigyousyu = function(syainId, syainName) {
     var id_element =$("#gaityuuSyainId");
     var name_element = $("#gaityuusaki");
+    
+    var name_element2 = $("#gaityuuSagyouinName");
+    name_element2.val(syainName);
+    name_element2.change();
+    
     id_element.val(syainId);
     name_element.val(syainName);
     id_element.change();

@@ -326,3 +326,10 @@ input[type=checkbox], input[type=radio] {
     width: 100%;
     border: 0;
 }
+.seikyu-value {
+    background-color: #fff !important;
+}
+#manageTable input{
+    width: 100%;
+    border: none;
+}

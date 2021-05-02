@@ -53,7 +53,7 @@ function base_check() {
         new Condition("input[name=jyusyo2]", "住所２", false, "zenkaku", 100, null),
         new Condition("input[name=tel]", "電話", false, "regExp", 15, /^0\d{1,4}-\d{1,4}-\d{4}$/),
         new Condition("input[name=fax]", "FAX", false, "regExp", 15, /^0\d{1,4}-\d{1,4}-\d{4}$/),
-        new Condition("input[name=url]", "URL", false, "regExp", 100, /^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/),
+        new Condition("input[name=url]", "ホームページ", false, "regExp", 100, /^(https?|ftp)(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)$/),
         new Condition("textarea[name=bikou]", "備考", false, "string", 255, null),
         new Condition("#tantous input[name=tantou_firstName]", "姓", true, "string", 20, null),
         new Condition("#tantous input[name=tantou_lastName]", "名", true, "string", 20, null),
@@ -74,17 +74,10 @@ function tantou_check() {
     var _result_2 = true;
     var _result_3 = true;
 
-    $("input[name='tantou_firstName'], \
-       input[name='tantou_lastName'], \
-       input[name='tantou_mail']").each(function (index, current_elem) {
-        if(_result_1 && is_Empty(current_elem)){
-            current_elem.focus();
-            alert("担当者姓名とメールアドレスの入力は必須です。");
-            _result_1 = false;
-            return false;
-        }
-    });
-    var check=0;
+   
+  
+    
+   	var check=0;
     var ToCheck=0;
     $("input[name='tantou_jimuMail']").each(function (index, current_elem) {
     	if($(current_elem).is(':checked')){
@@ -92,11 +85,11 @@ function tantou_check() {
     		if((index % 2)==0){
     			ToCheck+=1;
     		}
-    	}
+    	}//_result_1==true&&
     	if((index % 2)==1){
-    		if(_result_2 && check!=1){
+    		if(check!=1){
                 current_elem.focus();
-                alert("ToとCCはいずれ一つのみチェックしてください。");
+                alert("同一行のToとCCはいずれ一つのみチェックしてください。");
                 _result_2 = false;
                 return false;
     		}else{
@@ -104,12 +97,25 @@ function tantou_check() {
     		}
     	}
     });
+    
+    
 
-    if(ToCheck==0){
+    if(_result_1 && _result_2&&ToCheck==0){
     	alert("Toは少なくても一つチェックしてください。");
     	_result_3=false;
     }
-
+    
+    $("input[name='tantou_firstName'], \
+    	       input[name='tantou_lastName'], \
+    	       input[name='tantou_mail']").each(function (index, current_elem) {
+    	        if(_result_2==true && _result_3==true&&is_Empty(current_elem)){
+    	            current_elem.focus();
+    	            alert("担当者姓名とメールアドレスの入力は必須です。");
+    	            _result_1 = false;
+    	            return false;
+    	        }
+    	        
+    	    });
     return _result_1 && _result_2 && _result_3;
 }
 

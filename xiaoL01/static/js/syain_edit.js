@@ -171,12 +171,13 @@ function submit_check() {
 function base_check() {
 
     var conditions = [
+        new Condition("input[name=employeeCode]", "社員コード", true, "alphanumeric", 10, null),
         new Condition("input[name=kanjiSei]", "社員名（漢字）", true, "zenkaku", 15, null),
         new Condition("input[name=kanjiMei]", "社員名（漢字）", true, "zenkaku", 15, null),
         new Condition("input[name=katakanaSei]", "社員名（カタカナ）", true, "katakana", 15, null),
         new Condition("input[name=katakanaMei]", "社員名（カタカナ）", true, "katakana", 15, null),
-        new Condition("input[name=englishSei]", "社員名（英語）", false, "zenkaku_alphabetic", 15, null),
-        new Condition("input[name=englishMei]", "社員名（英語）", false, "zenkaku_alphabetic", 15, null),
+        new Condition("input[name=englishSei]", "社員名（英語）", true, "alphabetic", 30, null),
+        new Condition("input[name=englishMei]", "社員名（英語）", true, "alphabetic", 30, null),
         new Condition("input[name=shusshin]", "出身地", false, "zenkaku", 30, null),
         new Condition("input[name=passportId]", "パスポート番号", false, "regExp", 20, /^[A-Z0-9]+$/),
         new Condition("input[name=myNumber]", "マイナンバー", false, "regExp", 20, /^[A-Z0-9]+$/),
@@ -187,14 +188,13 @@ function base_check() {
         new Condition("input[name=address2]", "住所", false, "zenkaku", 100, null),
         new Condition("input[name=moyoriEki]", "最寄駅", false, "zenkaku", 30, null),
         new Condition("input[name=tel]", "携帯電話", false, "regExp", 15, /^0\d{1,4}-\d{1,4}-\d{4}$/),
-        new Condition("input[name=mailAddress]", "メールアドレス", false, "regExp", 50, /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/),
+        new Condition("input[name=mailAddress]", "メールアドレス", true, "regExp", 50, /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/),
         new Condition("input[name=wechatId]", "WechatID", false, "alphanumeric", 50, null),
         new Condition("input[name=lineId]", "LineID", false, "alphanumeric", 50, null),
         new Condition("textarea[name=bokokuAddress]", "母国の住所", false, "string", 255, null),
         new Condition("textarea[name=bokokuRennraku]", "母国の緊急連絡先", false, "string", 255, null),
         new Condition("input[name=schoolName]", "学校名", false, "zenkaku", 100, null),
         new Condition("input[name=sennmonn]", "専門", false, "zenkaku", 100, null),
-        new Condition("input[name=workYears]", "IT関連実務年数", false, "regExp", 4, /^\d{1,2}(.\d)?$/),
         new Condition("input[name=rirekiCompanyName]", "会社名", false, "zenkaku", 100, null),
         new Condition("input[name=rirekiBuSho]", "部署", false, "zenkaku", 100, null),
         new Condition("textarea[name=appeal]", "備考及び自己アピール", false, "string", 1024, null),
@@ -248,7 +248,7 @@ function project_check() {
         #projects textarea[name='projectGaiyou']").each(function (index, current_elem) {
         if(_result && is_Empty(current_elem)){
             current_elem.focus();
-            alert("経歴を入力してください。");
+            alert("業務経歴を入力してください。");
             _result = false;
             return;
         }
@@ -259,7 +259,7 @@ function project_check() {
     	startDates.push($(current_elem).val());
     });
     if(is_repeat(startDates)){
-    	alert("経歴の開始時間が重複しています。");
+    	alert("業務経歴の開始時間が重複しています。");
     	_result = false;
     }
 

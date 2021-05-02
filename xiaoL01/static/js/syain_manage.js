@@ -28,7 +28,7 @@ function doSubmit(type,id,name){
 function queryConfirm() {
     console.log(document.getElementsByName("zaisyoku")[0].checked);
     console.log(document.getElementsByName("hizaisyoku")[0].checked);
-
+    
     if(!document.getElementsByName("zaisyoku")[0].checked &&
         !document.getElementsByName("hizaisyoku")[0].checked) {
         alert("在籍と非在籍がいずれにしても、\n１つのチェックが必須です。");
@@ -36,7 +36,6 @@ function queryConfirm() {
     }
     return true;
 }
-
 
 
 
