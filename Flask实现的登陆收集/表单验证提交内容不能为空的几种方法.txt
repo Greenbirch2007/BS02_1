@@ -1,0 +1,138 @@
+表单验证提交内容不能为空的几种方法
+
+https://www.cnblogs.com/colinliu/p/checkform_null.html
+
+方法一：
+
+使用css的required属性
+
+<input type="" required="required" name="" id="" value="" />
+ 
+
+方法二：
+
+使用JS代码示例，注意事项：form要加上onSubmit事件，form.xx.vlaue要在表单中对应name
+
+复制代码
+<script type="text/javascript">
+function beforeSubmit(form){
+if(form.username.value==''){
+alert('用户名不能为空！');
+form.username.focus();
+return false;
+}
+if(form.password.value==''){
+alert('密码不能为空！');
+form.password.focus();
+return false;
+}
+if(form.password.value.length<6){
+alert('密码至少为6位，请重新输入！');
+form.password.focus();
+return false;
+}
+if(form.password.value!=form.password2.value) {
+alert('你两次输入的密码不一致，请重新输入！');
+form.password2.focus();
+return false;
+}
+return true;
+}
+</script>
+
+<fieldset>
+   <legend>用户注册</legend>
+    <form method="post" name="form" action="user.do?method=register" onSubmit="return beforeSubmit(this);">
+     <table border="1" width="100%" cellspacing="0" cellpadding="0">
+      <tr><td><label>用户名：<input type="text" name="username" value=""></label></td></tr>
+      <tr><td><label>密   码：<input type="password" name="password" value=""></label></td></tr>
+      <tr><td><label>重复密码：<input type="password" name="password2" value=""></label></td></tr>
+      <tr><td><input value="注册" type="submit"> <input type="reset" value="重置"></td></tr>      
+     </table>
+    </form>
+</fieldset>
+复制代码
+ 
+
+方法三：
+
+使用jQuery方法（通过class验证），需要引用jquery.min.js
+
+优势：
+
+1：为input添加class，名字可以随意设置，但每个input需要保持一致，本章案例calss设置为noNull。（若input已有class属性，可直接加到其后）
+
+2：为input添加一个属性，用来后期通过jquery获取该字段，用作提示语。本章案例提示属性为notNull。
+
+3：通过jQuery遍历页面中所有calss为noNull的表单，验证其是否为空，若为空，通过获取notNull的字段，进行为空提示。
+
+具体如何设置，请参照下面的案例。
+
+复制代码
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form>
+           <!-- input -->
+           <div>
+               姓名: <input type="text" name="name"  notNull="姓名" class="form-control noNull"> 
+           </div>
+           <br>
+           <!-- radio -->
+           <div>
+              性别:
+              男<input type="radio" name="sex" value="0" class="noNull" notNull="性别">
+              女<input type="radio" name="sex" value="1" >
+           </div>
+           <br>
+           <!-- select -->
+           <div>
+               年龄：
+                <select name="age" class="noNull" notNull="年龄">
+                    <option value ="">请选择</option>
+                    <option value ="1">1</option>
+                    <option value ="2">2</option>
+                </select>
+           </div>
+           <br>
+           <!-- checkbox -->
+           <div>
+               兴趣：
+               打球<input type="checkbox" name="hobby" value="1" class="noNull" notNull="兴趣">
+               唱歌<input type="checkbox" name="hobby" value="2">
+               跳舞<input type="checkbox" name="hobby" value="3">
+           </div>
+           <br>
+          <button type="button" class="btn-c" onclick="bubmi()">保存</button>
+    </form>
+
+<script src="jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+function bubmi(){
+    $(".noNull").each(function(){
+        var name = $(this).attr("name");
+        if($(this).val()==""){
+        alert($(this).attr('notNull')+"不能为空");return false;
+        }
+        if($(this).attr("type")=="radio"){  
+            if ($("input[name='"+name+"']:checked").size() < 1){  
+                alert($(this).attr('notNull')+"不能为空!");  
+                return false;  
+            }  
+        }
+        if($(this).attr("type")=="checkbox"){  
+            if ($('input[name="'+name+'"]:checked').size() < 1){  
+                alert($(this).attr('notNull')+"不能为空!");  
+                return false;  
+            }  
+        }        
+    })    
+}
+</script>
+</body>
+</html>
+复制代码
+ 
