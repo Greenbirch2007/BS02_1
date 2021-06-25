@@ -52,7 +52,7 @@ def get_user(user_name):
             return user
     return None
 
-
+# User类定义（声明，密码验证，ID，获取id）----load_user加载
 class User(UserMixin):
     """用户类"""
     def __init__(self, user):
@@ -81,16 +81,18 @@ class User(UserMixin):
         return None
 
 
-@login_manager.user_loader  # 定义获取登录用户的方法
+@login_manager.user_loader  # 定义获取登录用户的方法，也就是实现登陆的状态
 def load_user(user_id):
     return User.get(user_id)
 
+# 后端代码现实在前端
 
 class LoginForm(FlaskForm):
     """登录表单类"""
-    username = StringField('用户名', validators=[DataRequired()])
-    password = PasswordField('密码', validators=[DataRequired()])
-
+    username = StringField('用户名确认', validators=[DataRequired()])
+    password = PasswordField('密码确认哈', validators=[DataRequired()])
+# 三个视图函数：login,index,loginout,登出后又重定向到登陆login函数
+#
 
 @app.route('/login/', methods=('GET', 'POST'))  # 登录
 def login():
@@ -110,8 +112,6 @@ def login():
             else:
                 emsg = "用户名或密码密码有误"
     return render_template('login.html', form=form, emsg=emsg)
-
-
 
 @app.route('/')  # 首页
 @login_required  # 需要登录才能访问 会自动跳转到登陆的视图函数上

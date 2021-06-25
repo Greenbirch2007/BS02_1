@@ -1,6 +1,6 @@
 {% macro render_field(field) %} <!-- 定义字段宏 -->
-  <dt>{{ field.label }}:
-  <dd>{{ field(**kwargs)|safe }}
+  <dt>{{ field.label }}:<!--safe： 渲染时不转义--->
+  <dd>{{ field(**kwargs)|safe }}<!--safe： 渲染时不转义--->
   {% if field.errors %}
     <ul class=errors>
     {% for error in field.errors %}
@@ -10,6 +10,8 @@
   {% endif %}
   </dd>
 {% endmacro %}
+
+<!-----上面代码是用来验证表单的---->
 
 <!-- 登录表单 -->
 <form method="POST">
