@@ -1,0 +1,42 @@
+ sudo apt-get install openssl
+
+
+
+
+
+
+一、下载源码
+
+$ wget http://www.openssl.org/source/openssl-1.1.1g.tar.gz
+二、编译
+
+$ ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared 
+三、加载动态链接库
+
+cd /etc/ld.so.conf.d/
+vim openssl-1.1.1g.conf
+输入以下内容并保存：
+
+/usr/local/ssl/lib
+运行以下命令，可以看到/usr/local/ssl/lib目录的so文件被加载：
+
+ldconfig -v
+四、安装python3.6时如何依赖
+
+$ ./configure
+$ make && make install
+
+binld cannot find -lpython3.7m
+
+
+gcc -lpython3.7m --verbose
+
+
+[uwsgi]
+http = 127.0.0.1:5000 
+wsgi-file =  /home/ec2-user/test.py
+processes = 2
+threads = 8
+buffer-size = 32768
+master = true
+

@@ -14,7 +14,7 @@ import json
 class MainHandler(tornado.web.RequestHandler):
 
     def post(self, *args, **kwargs):
-        global body_data
+        global auth_username, auth_password
         '''
         用户登录
         post -> /login/
@@ -30,10 +30,7 @@ class MainHandler(tornado.web.RequestHandler):
 
         try:
             # from client receive info json------>object
-            body_data = tornado.escape.json_decode(self.request.body)
-
-
-
+            # body_data = tornado.escape.json_decode(self.request.body)
             # Authorization: Basic base64("user:passwd")
             auth_header = self.request.headers.get('Authorization', None)
             print("before  auth_header---> ", auth_header)
@@ -46,42 +43,30 @@ class MainHandler(tornado.web.RequestHandler):
                 # byte转str
                 auth_username, auth_password = auth_info.decode('utf-8').split(":")
                 print("after auth_header------->",auth_username, auth_password)
+
+            if auth_username == "tg_last" and auth_password == "test":
+                 response = {}
+                 _f_date_ = datetime.datetime.now().date()
+                 _f_time_ = datetime.datetime.now().time()
+                 response["meta"] = {"version": 1, "date": "{0}".format(_f_date_.strftime("%Y-%m-%d"))}
+                 response["info"] = {"time": "{0}".format(_f_time_.strftime("%H:%M:%S")), "result": [
+                     {"A": 0.2},
+                     {"B": 0.3},
+                     {"C": 0.5},
+                 ]}
+
+                 response = json.dumps(response)
+
+                 self.write(response)
+                 print(response, type(response))
+
             else:
-                pass
-            #     try:
-            #         name = auth_username
-            #         cursor.execute(
-            #             "SELECT * FROM blog_bloguser WHERE name='{}'".format(name)
-            #         )
-            #         result = cursor.fetchone()
-            #         if result is not None:
-            #             password = result['password']
-            #             if auth_password == password:
-            #                 self.create_auth_header()
-            #             else:
-            #                 self.create_auth_header()
-            #         else:
-            #             self.create_auth_header()
-            #     except Exception as e:
-            #         return self.write(e)
-            # else:
-            #     self.create_auth_header()
+                _401_error = {
+                    "error_code": 401,
+                    "error_content": "401 Unauthorized"
+                }
+                self.write("{0}".format(_401_error))
 
-
-
-            # base64.b64decode(object_base64).decode("utf-8")
-            # body_Passwd=base64.b64decode(body_Passwd).decode("utf-8")
-            # body_data["password"] =body_Passwd
-            # body_data["user_id"] =body_user_id
-            # print("after base64---->",body_data)
-            # if body_data["user_id"] == "tg_last" and body_data["Passwd"] == "test":
-            #     return body_data
-            # elif body_data["user_id"] != "tg_last":
-            #     self.write("user_id is wrong !")
-            # elif body_data["Passwd"] != "test":
-            #     self.write("Passwd is wroing!")
-            # else:
-            #     self.write("user_id and Passwd are wroing!")
 
             print("post success")
         except BaseException:
@@ -91,23 +76,7 @@ class MainHandler(tornado.web.RequestHandler):
             }
 
             self.write(json.dumps(result, ensure_ascii=False))
-        response = {}
-        _f_date_ = datetime.datetime.now().date()
-        _f_time_ = datetime.datetime.now().time()
-        response["meta"]={"version":1,"date":"{0}".format(_f_date_.strftime("%Y-%m-%d"))}
-        response["info"]= {"time":"{0}".format(_f_time_.strftime("%H:%M:%S")),"result":[
-            {"A":0.2},
-            {"B":0.3},
-            {"C":0.5},
-        ]}
 
-        response["login_info"] = body_data
-        response=json.dumps(response)
-
-        # response_str =json.load(response)
-        # print(response_str["login_info"])
-        self.write(response)
-        print(response,type(response))
 
 def make_app():
     return tornado.web.Application([
