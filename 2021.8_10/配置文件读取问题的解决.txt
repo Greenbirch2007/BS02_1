@@ -1,0 +1,10 @@
+
+
+
+开发和测试时，配置文件的路径问题，导致配置常数无法引用
+最终使用
+os.path.join
+os.path.dirname
+os.path.abspath
+
+这三个模块组合完成

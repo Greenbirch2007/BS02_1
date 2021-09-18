@@ -1,18 +1,34 @@
-# coding:utf-8
+
 import yaml
 import os
-# 作者：上海-悠悠 交流QQ群：588402570
 
-# 获取当前脚本所在文件夹路径
-curPath = os.path.dirname(os.path.realpath(__file__))
-# 获取yaml文件路径
-yamlPath = os.path.join(curPath, "t.yaml")
 
-# open方法打开直接读出来
-f = open(yamlPath, 'r', encoding='utf-8')
-cfg = f.read()
-print(cfg)
+class GetYaml():
+    def __init__(self, file_path):
+        # 判断文件是否存在
+        if os.path.exists(file_path):
+            self.file_path = file_path
+        else:
+            print('没有找到%s文件路径' % file_path)
 
-d = yaml.load(cfg, Loader=yaml.FullLoader)
-print(d["user"])
-print(d["psw"])
+        self.data = self.read_yaml()
+
+    def read_yaml(self):
+        with open(self.file_path, 'r', encoding='utf-8')as f:
+            p = f.read()
+            return p
+
+    def get_data(self, key=None):
+        result = yaml.load(self.data, Loader=yaml.FullLoader)
+        # 判断key是否存在
+        if key == None:
+            return result
+        else:
+            return result.get(key)
+
+
+if __name__ == '__main__':
+    read_yaml = GetYaml('test_data.yaml')
+    r = read_yaml.get_data()
+    print(r)
+

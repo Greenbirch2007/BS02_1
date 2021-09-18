@@ -1,0 +1,15 @@
+
+1. flask, tornado , restfulapi
+异常捕捉
+sqlalchemgy
+401
+405
+500
+2. authentied basic auth
+3. log
+4. sql server  microsoft sql server management studio
+5. mssql pyodbc
+6. 读取yaml
+7.  单体测试 mock unittest
+8. 结合测试
+9. uswgi
