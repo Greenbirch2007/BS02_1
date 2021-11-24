@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>jsTree test</title>
+  <!-- 2 包含主题模板CSS文件 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+  <!-- 4 包含jQuery库 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <!-- 5 包括缩小的jstree源文件 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+</head>
+<body>
+
+
+<div id="container"></div>
+<script>
+$(function() {
+  $('#container').jstree({
+    'core' : {
+      'data' : [
+        { "text" : "App", "children" : [
+            { "text" : "test" , "children" :[{"text":"0....."}] },
+            { "text" : "log" },
+            { "text" : "config.ini" },
+            { "text" : "db.py" },
+            { "text" : "errors.py" },
+            { "text" : "log.py" },
+            { "text" : "server.py" },
+            { "text" : "uwsgi.log" },
+            { "text" : "IT", "children" :[{"text":"test_server_it.py"}] },
+            { "text" : "config", "children" :[{"text":"config.yaml"},{"text":"config_win.yaml"}] },
+            { "text" : "model" },
+            { "text" : "for_windows_ut" },
+            { "text" : "for_linux_ut" }
+          ]
+
+        }
+
+
+      ]
+    }
+  });
+});
+</script>
+</body>
+</html>

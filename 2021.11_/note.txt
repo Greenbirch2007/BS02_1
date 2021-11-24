@@ -1,0 +1,32 @@
+
+
+
+docker pull centos:centos7
+
+
+1.创建两个容器（ok）
+docker run  -it --name centos7_sdk2 -d centos:centos7 /bin/bash
+docker run  -it --name centos7_sdk3 -d centos:centos7 /bin/bash
+
+
+
+2. 进入容器(其实可以跳过)
+sudo docker attach 44fc0f0582d9  
+并在容器的/home/目下创建文件夹
+
+3. 将两个文件夹关联起来
+sudo docker run -itv  /home/Greenbirch2007/aaa:/home/bbb centos:centos7 /bin/bash
+sudo docker run -itv  /home/Greenbirch2007/aaa:/home/bbb centos:centos7 /bin/bash
+
+
+
+
+4. 容器重新命名即可
+
+docker rename eba637c3c361 centos7_sdk3
+
+
+
+
+
+

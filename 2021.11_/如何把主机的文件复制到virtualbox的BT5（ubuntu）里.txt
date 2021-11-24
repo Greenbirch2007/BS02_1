@@ -1,0 +1,8 @@
+如何把主机的文件复制到virtualbox的BT5（ubuntu）里
+
+https://www.cnblogs.com/hqucth/archive/2012/08/28/2660301.html
+
+还需要自己安装v
+
+
+https://www.pianshen.com/article/221618990/

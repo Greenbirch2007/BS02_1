@@ -1,0 +1,11 @@
+批量执行当前文件夹下所有py文件
+
+
+#批量执行当前文件夹下所有py文件
+import os 
+lst=os.listdir(os.getcwd())  
+  
+for c in lst:
+    if os.path.isfile(c) and c.endswith('.py') and c.find("AllTest")==-1:  #去掉AllTest.py文件
+        print(c)
+        os.system("python {0}".format(c))  #E:\Python\mytest.py

@@ -1,0 +1,3 @@
+https://www.cnblogs.com/lzw123-/p/9908748.html
+
+yum install java-devel

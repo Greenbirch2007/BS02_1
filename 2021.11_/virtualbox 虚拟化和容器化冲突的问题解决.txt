@@ -1,0 +1,10 @@
+https://www.altaro.com/hyper-v/free-tool-advanced-settings-editor-hyper-v-virtual-machines/
+
+1、无法安装64位系统
+第一：确认电脑是否支持64位虚拟化技术
+第二：确认在bios中是否已经开启了虚拟化技术
+若满足条件，则前往关闭hyper-v服务（选择手动启动并关闭服务），同时在控制面板–程序–启动或关闭程序功能中将hyper-v取消勾选
+
+2、VERR_NEM_VM_CREATE_FAILED
+必须以管理员的身份启动window命令窗口并运行bcdedit /set hypervisorlaunchtype off
+不以管理员启动命令窗口的话，运行以上指令将会提示无法操作的问题，因为权限不足
