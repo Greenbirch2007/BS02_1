@@ -1,0 +1,5 @@
+
+
+在Linux
+
+使用os.environ替代 export环境设置语句
