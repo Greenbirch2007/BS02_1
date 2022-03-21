@@ -1,1 +1,0 @@
-https://github.com/Greenbirch2007/Yahoo_JAPAN_spiders/blob/master/Jobs/%E4%B8%9C%E4%BA%ACCFA/threading_CFA.py

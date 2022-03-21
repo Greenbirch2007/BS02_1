@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d49c00e3-d848-4cd2-8ca9-42a6c40f448e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/文章列表.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/文章列表.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/批量抓取文本/HTMLTestReportEN.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/批量抓取文本/a_config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/批量抓取文本/auto_t.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/批量抓取文本/threading_async.py" beforeDir="false" afterPath="$PROJECT_DIR$/批量抓取文本/threading_async.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +29,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mql5_4" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.threading_async">
     <configuration name="after_1m_stopsleep" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="2021.11_2022.3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -46,8 +51,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="threading_async" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="2021.11_2022.3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/批量抓取文本" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/批量抓取文本/threading_async.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.threading_async" />
         <item itemvalue="Python.after_1m_stopsleep" />
       </list>
     </recent_temporary>

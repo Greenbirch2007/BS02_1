@@ -4,7 +4,7 @@ import csv
 import os
 import time
 import copy
-from tag_config import *
+from config import *
 import re
 from urllib3.exceptions import ProtocolError
 import datetime
@@ -23,7 +23,7 @@ import html
 from zhconv import convert
 
 queue_num = 10
-test_filename = "input_urls.txt"
+test_filename = "input.txt"
 ########
 
 
@@ -157,6 +157,7 @@ def mkdir(path):
         os.makedirs(path)
 
 def clean_except_big_string(big_string):
+    big_string = save_30000_laststring(big_string)
     big_string =  re.sub(special_tag,'',big_string)
     big_string =  re.sub(emoji_tag1,'',big_string)
     big_string =  re.sub(emoji_tag2,'',big_string)
@@ -172,13 +173,14 @@ def clean_except_big_string(big_string):
     big_string = re.sub("","",big_string)
     big_string = re.sub(new_words,"",big_string)
     big_string = " ".join(big_string.split("\\"))
-    big_string = save_30000_laststring(big_string)
+
     return big_string
 
 def remove_upprinttalb_char(s):
     return "".join(x for x in s if x.isprintable())
 
 def big_cleanup(big_string):
+    big_string = save_30000_laststring(big_string)
     big_string =  re.sub(special_tag,'',big_string)
     big_string =  re.sub(emoji_tag1,'',big_string)
     big_string =  re.sub(emoji_tag2,'',big_string)
@@ -193,7 +195,7 @@ def big_cleanup(big_string):
     big_string = remove_upprinttalb_char(big_string)
     big_string = " ".join(big_string.split("\\"))
     big_string = re.sub(new_words,"",big_string)
-    big_string = save_30000_laststring(big_string)
+
     return big_string
 
 
