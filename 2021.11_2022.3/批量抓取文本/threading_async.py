@@ -202,10 +202,11 @@ def big_cleanup(big_string):
 def use_bs4_parsehtml(html,tag_name):
     tag_list = []
     soup = BeautifulSoup(html, 'html.parser')
-    tag_len = len(soup.find_all(tag_name))
+    soup_find_all_tagname = soup.find_all(tag_name)
+    tag_len = len(soup_find_all_tagname)
     for item in range(tag_len):
         # remove \n \t
-        tag_list.append(" ".join(soup.find_all(tag_name)[item].get_text().split()))
+        tag_list.append(" ".join(soup_find_all_tagname[item].get_text().split()))
     big_string = " ".join(tag_list)
     final_list= [big_string]
     return final_list

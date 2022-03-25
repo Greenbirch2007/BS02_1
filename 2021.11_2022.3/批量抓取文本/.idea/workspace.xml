@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="919c7b0e-984f-49b5-b833-3f3f858e66c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../文章列表.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../文章列表.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/threading_async.py" beforeDir="false" afterPath="$PROJECT_DIR$/threading_async.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,9 +31,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="D:\python3.10\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/threading_async.py" />
