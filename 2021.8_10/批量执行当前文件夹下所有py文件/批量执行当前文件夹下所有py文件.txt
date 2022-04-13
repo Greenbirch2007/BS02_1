@@ -9,3 +9,31 @@ for c in lst:
     if os.path.isfile(c) and c.endswith('.py') and c.find("AllTest")==-1:  #去掉AllTest.py文件
         print(c)
         os.system("python {0}".format(c))  #E:\Python\mytest.py
+        
+        
+        
+import os
+
+# lst=os.listdir(os.getcwd())
+# for c in lst:
+#     if os.path.isfile(c) and c.endswith('.py') and c.find("__init__") == -1:  # __init__.py文件
+#         print(c)
+#         os.system("python {0}".format(c))  # E:\Python\mytest.py
+
+
+# python遍历某个文件夹下的所有子文件夹及文件
+import os
+rootdir = 'C:\\python3.7\\nwctl-api\\nw_ctl\\test\\unit'
+for root,dirs,files in os.walk(rootdir):
+    # for dir in dirs:
+        # print(os.path.join(root,dir))
+    for file in files:
+        all_file_path = os.path.join(root,file)
+        if "test" in str(all_file_path).split("\\")[-1]:
+            os.system("python {0}".format(all_file_path))
+
+
+
+
+
+
