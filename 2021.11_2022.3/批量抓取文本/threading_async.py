@@ -370,6 +370,7 @@ class ARtoolSpider(object):
         self.url_queue = Queue()
     def add_url_to_queue(self):
         for i in url_list:
+            print(i)
             self.url_queue.put(self.url_pattern.format(i))
 
 

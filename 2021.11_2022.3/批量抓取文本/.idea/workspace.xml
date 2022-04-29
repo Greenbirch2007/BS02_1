@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="919c7b0e-984f-49b5-b833-3f3f858e66c2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/threading_async.py" beforeDir="false" afterPath="$PROJECT_DIR$/threading_async.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +21,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../mql5_4/MQL &amp; python/4.日经长短线结合判断(15m-80 &amp; 60m-100)" />
   </component>
   <component name="RunManager">
     <configuration name="threading_async" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
