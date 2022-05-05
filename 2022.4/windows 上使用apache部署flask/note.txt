@@ -1,0 +1,139 @@
+https://zhuanlan.zhihu.com/p/417226916
+
+
+2 下载安装
+需依次安装pyhton、flask、Apache、mod_wsgi，必须要保证的是，python的版本和mod_wsgi的版本一致
+，python的MSC版本和Apache的VC++版本一致，否则极有可能会失败。这里使用的python版本是python-3.5.4，在cmd下输入命令python看到MSC版本号是v.1900，对应了VC14。
+
+
+
+(1)安装python
+官网下载地址：https://www.python.org/downloads/
+
+下载得到文件python-3.5.4-amd64.exe，安装（勾选加入PATH环境变量）。
+
+
+(2)安装flask
+一般python自带pip工具，利用此工具直接安装即可。
+
+进入cmd，输入命令 pip install flask。
+
+(3)安装Apache
+s1.下载安装
+
+下载地址：
+
+https://www.apachehaus.com/cgi-bin/download.plx
+
+或
+
+https://www.apachelounge.com/download/
+
+下载VC14对应的版本，解压出Apache24文件夹，置于一个指定的目录下，这里放在了D盘根目录。
+
+s2.检查配置文件中服务器根目录
+
+在D:\Apache24\conf中，打开httpd.conf文件，将Define SRVROOT改为实际的路径："c:/Apache24" --> "D:/Apache24"。
+
+
+s3.启动测试
+
+启动
+
+cmd进入D:\Apache24\bin，输入命令httpd，启动Apache（或将bin目录加入PATH环境变量中，直接启动）。
+
+测试
+
+浏览器访问地址http://localhost/，出现 It works!，表明安装成功。
+
+(4)安装mod_wsgi
+s1.下载
+
+下载地址：
+
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#mod_wsgi
+
+选择下载与python一致的版本（红线圈出），其中，cp35标识了python3.5。
+
+
+s2.安装
+
+将.whl文件放到Python35\Scripts目录下，用pip安装。cmd进入Python35\Scripts，依次执行安装、解析命令
+
+安装：pip install "mod_wsgi-4.5.24+ap24vc14-cp35-cp35m-win_amd64.whl"
+
+解析：mod_wsgi-express module-config
+
+
+将出现的三行内容复制到httpd.conf文件中，添加至LoadModule之后，保存。
+
+
+重启Apache，没有报错表明mod_wsgi加载成功。
+
+
+注：在Apache中载入mod_wsgi模块，本来应该同其他模块一样，载入一个.so的文件，但是我们拥有的是.whl文件，非.so文件。于是采取的一种策略是，安装.whl，将它的配置信息解析出来，然后再把配置信息完整地载入Apache，这样就达到了目的。
+3 创建Python程序
+创建目录D:\mytest，新建两个文件mytest.py、mytest.wsgi，写入如下内容
+
+mytest.py
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/mytest')
+def mytest():
+    return 'Hello World.这是一个部署测试。'
+
+if __name__ == '__main__':
+    app.run()
+mytest.wsgi
+
+import sys
+
+#app's path
+sys.path.insert(0,"D:/mytest")
+
+from mytest import app
+
+#Initialize WSGI app object
+application = app
+4 在Apache中配置虚拟主机
+打开Apache24\conf目录下的httpd.conf文件，在文件末加入如下内容
+
+<VirtualHost *>
+    ServerName mytest.com
+    WSGIScriptAlias / D:\mytest\mytest.wsgi
+    <Directory D:\mytest\>
+        Require all granted
+    </Directory>
+</VirtualHost>
+注意其中的资源路径。
+
+5 访问测试
+重新启动Apache，浏览器访问地址 http://localhost:8080/mytest
+
+出现页面内容
+
+
+
+配置文件修改内容如下
+
+
+<VirtualHost *>
+    ServerName mytest.com
+    WSGIScriptAlias / C:\mytest\mytest.wsgi
+    <Directory C:\mytest\>
+        Require all granted
+    </Directory>
+</VirtualHost>
+
+ServerName localhost:8080
+
+
+LoadFile "c:/python3.5.4/python35.dll"
+LoadModule wsgi_module "c:/python3.5.4/lib/site-packages/mod_wsgi/server/mod_wsgi.cp35-win32.pyd"
+WSGIPythonHome "c:/python3.5.4"
+
+
+Listen 8080
