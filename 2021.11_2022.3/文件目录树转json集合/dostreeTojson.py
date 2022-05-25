@@ -58,6 +58,17 @@
 #
 
 
+def readjsonfile(filename):
+    with open(filename, 'r', encoding='utf-8') as fw:
+        s = json.load(fw)
+        return s
+
+
+def writeinto_jsonfile(filename,list_data):
+    with open(filename, 'w', encoding='utf-8') as fw:
+        json.dump(list_data, fw, indent=2, ensure_ascii=False)
+
+
 
 # data = ["1. abc", "2. afd", "3.ad", "4. ajh", "1. fc", "2. acxcf",
 # "3. fcacxi", "1.acxcf", "2. rrr", "1. acxcf", "2.rrr", "1.adsfdd", "2.acxcfxxc"]
@@ -73,6 +84,9 @@ from collections import defaultdict
 
 d = defaultdict(list)
 from functools import reduce
+
+
+
 
 
 
