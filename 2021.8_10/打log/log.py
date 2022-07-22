@@ -41,15 +41,10 @@ class Logger:
         self.logger.critical(msg)
 
 
-°´ÕÕÈÕÆÚ½øÐÐÇÐ·Ö
-¸öÈË±È½ÏÏ°¹ßÕâÖÖ·½Ê½¡£ ÔÚloggingÕâ¸ö¿âÖ®ÖÐ£¬ »¹Ö§³Ö°´ÕÕ·ÖÖÓ¡¢Ð¡Ê±¡¢ÌìµÈ¼¶±ð½øÐÐÇÐ·Ö¡£ ¸ù¾ÝÎÒÃÇÒµÎñµÄ´óÐ¡£¬ ÎÒÒ»°ãÑ¡Ôñ°´ÕÕ¡°Ìì¡± ½øÐÐÇÐ·Ö¡£ ¿ÉÒÔ²Î¿¼ÏÂÃæµÄÅäÖÃ£º
+æŒ‰ç…§æ—¥æœŸè¿›è¡Œåˆ‡åˆ†
+ä¸ªäººæ¯”è¾ƒä¹ æƒ¯è¿™ç§æ–¹å¼ã€‚ åœ¨loggingè¿™ä¸ªåº“ä¹‹ä¸­ï¼Œ è¿˜æ”¯æŒæŒ‰ç…§åˆ†é’Ÿã€å°æ—¶ã€å¤©ç­‰çº§åˆ«è¿›è¡Œåˆ‡åˆ†ã€‚ æ ¹æ®æˆ‘ä»¬ä¸šåŠ¡çš„å¤§å°ï¼Œ æˆ‘ä¸€èˆ¬é€‰æ‹©æŒ‰ç…§â€œå¤©â€ è¿›è¡Œåˆ‡åˆ†ã€‚ å¯ä»¥å‚è€ƒä¸‹é¢çš„é…ç½®ï¼š
 
 from logging.handlers import TimedRotatingFileHandler
 handler = TimedRotatingFileHandler(
         "flask.log", when="D", interval=1, backupCount=15,
         encoding="UTF-8", delay=False, utc=True)
-
-×÷Õß£ºÕÅÓêÉúÔÚÂ·ÉÏ
-Á´½Ó£ºhttps://www.jianshu.com/p/daf5c9e57c65
-À´Ô´£º¼òÊé
-Öø×÷È¨¹é×÷ÕßËùÓÐ¡£ÉÌÒµ×ªÔØÇëÁªÏµ×÷Õß»ñµÃÊÚÈ¨£¬·ÇÉÌÒµ×ªÔØÇë×¢Ã÷³ö´¦¡£
